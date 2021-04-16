@@ -1,9 +1,16 @@
 const router = require('express').Router();
+const Resource = require('./model');
+const { checkBody } = require('../middleware/middleware');
 
 
 // [POST] /api/resources
-router.post('/', (req,res,next) => {
-  res.json('post request complete');
+router.post('/',checkBody, async (req,res,next) => {
+  try {
+    const successfull = await Resource.resourcePost(req.body);
+    res.json(successfull);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // [GET] /api/resources
