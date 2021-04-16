@@ -11,7 +11,7 @@ server.use(express.json());
 server.use(helmet());
 server.use('/api/projects', projectRouter);
 server.use('/api/resources', resourceRouter);
-server.use('/api/task', taskRouter);
+server.use('/api/tasks', taskRouter);
 
 
 server.use((err, req, res, next) => { // eslint-disable-line

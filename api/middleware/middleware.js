@@ -10,11 +10,7 @@ function checkBody(req,res,next){
 }
 
 function projectsBody(req,res,next){
-
   const {project_name} = req.body;
-
-
-
   if(!project_name){
     res.status(400).json({message: 'field required name'});
   }else{
@@ -28,7 +24,23 @@ function projectsBody(req,res,next){
 
 }
 
+function taskBody(req,res,next){
+  const {task_description} = req.body;
+  if(!task_description){
+    res.json({message: 'need to have a description..'});
+  }else{
+    req.task = {
+      task_description: task_description,
+      task_notes:!req.body.task_notes ? null : req.body.task_notes,
+      task_completed: !req.body.task_completed ? false : true,
+      project_id: req.body.project_id
+    };
+    next();
+  }
+}
+
 module.exports = {
   checkBody,
-  projectsBody
+  projectsBody,
+  taskBody
 };
