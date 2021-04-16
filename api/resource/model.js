@@ -1,8 +1,5 @@
 const db = require('../../data/dbConfig');
 
-// insert into resources (resource_name)
-// values ('stupid resource' )
-
 function findById(resource_id){
   return db('resources').where({resource_id}).first();
 }
